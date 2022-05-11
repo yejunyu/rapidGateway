@@ -40,7 +40,7 @@ public class RapidConfig {
     private String bufferType = RapidBufferHelper.FLUSHER;
     // 网关队列: 内存队列大小
     private int bufferSize = 1024 * 1024;
-    // 网关队列: 阻塞/等待策略
+    // 网关队列: 阻塞/等待策略 block yield
     private String waitStrategy = "blocking";
 
     // http Async 参数

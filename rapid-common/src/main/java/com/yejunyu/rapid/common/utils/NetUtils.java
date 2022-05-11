@@ -69,12 +69,11 @@ public class NetUtils {
         String host = blocks[0];
         int port = 80;
         if (blocks.length > 1) {
-            port = Integer.valueOf(blocks[1]);
+            port = Integer.parseInt(blocks[1]);
         } else {
             address += ":" + port; // use default 80
         }
-        String serverAddr = String.format("%s:%d", host, port);
-        return serverAddr;
+        return String.format("%s:%d", host, port);
     }
 
     public static String getLocalAddress(String address) {
@@ -83,7 +82,7 @@ public class NetUtils {
             throw new IllegalArgumentException(address + " is invalid address");
         }
         String host = blocks[0];
-        int port = Integer.valueOf(blocks[1]);
+        int port = Integer.parseInt(blocks[1]);
 
         if ("0.0.0.0".equals(host)) {
             return String.format("%s:%d", NetUtils.getLocalIp(), port);
@@ -164,8 +163,7 @@ public class NetUtils {
 
     public static String remoteAddress(SocketChannel channel) {
         SocketAddress addr = channel.socket().getRemoteSocketAddress();
-        String res = String.format("%s", addr);
-        return res;
+        return String.format("%s", addr);
     }
 
     public static String localAddress(SocketChannel channel) {

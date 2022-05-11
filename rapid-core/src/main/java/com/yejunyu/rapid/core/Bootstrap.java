@@ -9,7 +9,7 @@ package com.yejunyu.rapid.core;
 public class Bootstrap {
     public static void main(String[] args) {
         // 1. 加载网关配置信息
-
+        RapidConfig rapidConfig = RapidConfigLoader.getInstance().load(args);
         // 2. 插件初始化
 
         // 3. 初始化服务注册管理中心, 监听动态配置的变更
