@@ -15,5 +15,6 @@ public class Bootstrap {
         // 3. 初始化服务注册管理中心, 监听动态配置的变更
 
         // 4. 容器启动
+        RapidContainer container = new RapidContainer(rapidConfig);
     }
 }
