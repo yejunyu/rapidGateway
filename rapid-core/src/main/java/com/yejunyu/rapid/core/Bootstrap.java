@@ -15,6 +15,8 @@ public class Bootstrap {
         // 3. 初始化服务注册管理中心, 监听动态配置的变更
 
         // 4. 容器启动
-        RapidContainer container = new RapidContainer(rapidConfig);
+        final RapidContainer container = new RapidContainer(rapidConfig);
+        container.start();
+        Runtime.getRuntime().addShutdownHook(new Thread(container::shutdown));
     }
 }

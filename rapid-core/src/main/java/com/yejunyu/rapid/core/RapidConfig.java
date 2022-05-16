@@ -54,7 +54,7 @@ public class RapidConfig {
     private int httpMaxConnections = 10_000;
     // 客户端每个地址支持最大连接数
     private int httpConnectionsPerHost = 8000;
-    // 客户端控线连接超时时间, 60s
+    // 客户端空闲连接超时时间, 60s
     private int httpPooledConnectionIdleTimeout = 60 * 1000;
 
     public int getPort() {

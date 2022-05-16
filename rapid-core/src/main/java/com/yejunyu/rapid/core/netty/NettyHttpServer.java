@@ -114,7 +114,7 @@ public class NettyHttpServer implements LifeCycle {
         }
         try {
             this.serverBootstrap.bind().sync();
-            log.info("<========== Server Start Up on port " + this.port + "==========>");
+            log.info("<========== Server Start Up on port: " + this.port + "==========>");
         } catch (InterruptedException e) {
             throw new RuntimeException("this serverBootstrap#start bind fail!", e);
         }
@@ -189,5 +189,9 @@ public class NettyHttpServer implements LifeCycle {
             log.warn("Netty server pipeline: exceptionCaught {}", remoteAddr);
             ctx.channel().close();
         }
+    }
+
+    public EventLoopGroup getBossEventLoopGroup() {
+        return bossEventLoopGroup;
     }
 }

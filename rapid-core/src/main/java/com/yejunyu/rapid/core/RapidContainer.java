@@ -1,6 +1,7 @@
 package com.yejunyu.rapid.core;
 
 import com.yejunyu.rapid.common.constants.RapidBufferHelper;
+import com.yejunyu.rapid.core.netty.NettyHttpClient;
 import com.yejunyu.rapid.core.netty.NettyHttpServer;
 import com.yejunyu.rapid.core.netty.processor.NettyBatchProcessor;
 import com.yejunyu.rapid.core.netty.processor.NettyCoreProcessor;
@@ -24,6 +25,8 @@ public class RapidContainer implements LifeCycle {
 
     private NettyHttpServer nettyHttpServer;
 
+    private NettyHttpClient nettyHttpClient;
+
     public RapidContainer(RapidConfig rapidConfig) {
         this.rapidConfig = rapidConfig;
         init();
@@ -44,17 +47,20 @@ public class RapidContainer implements LifeCycle {
         }
         // 3. 创建 httpserver
         nettyHttpServer = new NettyHttpServer(rapidConfig, processor);
+        nettyHttpClient = new NettyHttpClient(rapidConfig, nettyHttpServer.getBossEventLoopGroup());
     }
 
     @Override
     public void start() {
         processor.start();
         nettyHttpServer.start();
+        nettyHttpClient.start();
         log.info("RapidContainer start!");
     }
 
     @Override
     public void shutdown() {
+        nettyHttpClient.shutdown();
         nettyHttpServer.shutdown();
         processor.shutdown();
         log.info("RapidContainer shutdown!");
