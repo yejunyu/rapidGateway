@@ -45,7 +45,7 @@ public class NettyHttpServer implements LifeCycle {
     private EventLoopGroup bossEventLoopGroup;
     private EventLoopGroup workEventLoopGroup;
 
-    private Processor processor;
+    private final Processor processor;
 
     public NettyHttpServer(RapidConfig rapidConfig, Processor processor) {
         this.rapidConfig = rapidConfig;
