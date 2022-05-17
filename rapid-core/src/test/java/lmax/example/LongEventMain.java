@@ -24,11 +24,11 @@ public class LongEventMain {
         final LongEventProducer producer = new LongEventProducer(ringBuffer);
 
         final ByteBuffer bb = ByteBuffer.allocate(8);
-        for (int i = 0; true; i++) {
+        for (int i = 0; i < 100; i++) {
             bb.putLong(0, i);
             producer.onData(bb);
             Thread.sleep(1000L);
         }
-
+        disruptor.shutdown();
     }
 }
