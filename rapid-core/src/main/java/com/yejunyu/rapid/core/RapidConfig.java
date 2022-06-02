@@ -1,5 +1,6 @@
 package com.yejunyu.rapid.core;
 
+import com.lmax.disruptor.*;
 import com.yejunyu.rapid.common.constants.BaseConst;
 import com.yejunyu.rapid.common.constants.RapidBufferHelper;
 import com.yejunyu.rapid.common.utils.NetUtils;
@@ -113,8 +114,18 @@ public class RapidConfig {
         return bufferSize;
     }
 
-    public String getWaitStrategy() {
-        return waitStrategy;
+    public WaitStrategy getWaitStrategy() {
+        switch (waitStrategy){
+            case "yielding":
+                return new YieldingWaitStrategy();
+            case "busySpin":
+                return new BusySpinWaitStrategy();
+            case "sleeping":
+                return new SleepingWaitStrategy();
+            case "blocking":
+            default:
+                return new BlockingWaitStrategy();
+        }
     }
 
     public int getHttpConnectTimeout() {

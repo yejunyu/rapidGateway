@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Configuration status="INFO" schema="Log4J-V2.0.xsd" monitorInterval="600">
+<!--    启动参数添加全异步 -->
+<!--    -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector-->
 
     <!--日志级别：TRACE < DEBUG < INFO < WARN < ERROR < FATAL-->
     <Properties>
