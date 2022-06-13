@@ -1,7 +1,5 @@
 package com.yejunyu.rapid.common.concurrent.queue.mpmc;
 
-import java.util.concurrent.atomic.AtomicIntegerArray;
-
 /**
  * @author : YeJunyu
  * @description : 2 次幂容器

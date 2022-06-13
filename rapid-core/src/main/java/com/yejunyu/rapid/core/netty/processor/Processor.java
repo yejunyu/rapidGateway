@@ -15,7 +15,7 @@ public interface Processor {
      *
      * @param httpRequestWrapper
      */
-    void process(HttpRequestWrapper httpRequestWrapper);
+    void process(HttpRequestWrapper httpRequestWrapper) throws Exception;
 
     /**
      * 执行器启动

@@ -24,11 +24,7 @@ public class MpmcConcurrentQueue<E> implements ConcurrentQueue<E> {
 
     @SuppressWarnings("unchecked")
     public MpmcConcurrentQueue(final int capacity) {
-        int c = 2;
-        while (c < capacity) {
-            c <<= 1;
-        }
-        this.capacity = c;
+        this.capacity = Capacity.getCapacity(capacity);
         mask = this.capacity - 1;
         buffer = new Cell[this.capacity];
         // 缓存预加载
