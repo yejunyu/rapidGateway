@@ -77,9 +77,10 @@ public class NettyHttpServer implements LifeCycle {
         this.serverBootstrap
                 .group(bossEventLoopGroup, workEventLoopGroup)
                 .channel(useEpoll() ? EpollServerSocketChannel.class : NioServerSocketChannel.class)
+                // 握手等待队列和 accept 队列之和
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 // 就是keepalive, 对应用层没什么用
-                .option(ChannelOption.SO_KEEPALIVE, false)
+//                .option(ChannelOption.SO_KEEPALIVE, false)
                 // 让关闭连接释放的端口今早可使用
                 .option(ChannelOption.SO_REUSEADDR, true)
                 // 禁用 nagle 算法,
@@ -88,8 +89,6 @@ public class NettyHttpServer implements LifeCycle {
                 .childOption(ChannelOption.SO_RCVBUF, 65535)
                 // TCP发送缓冲区的容量上限
                 .childOption(ChannelOption.SO_SNDBUF, 65535)
-                // 握手等待队列和 accept 队列之和
-                .childOption(ChannelOption.SO_BACKLOG, 1024)
                 .localAddress(new InetSocketAddress(port))
                 .childHandler(new LoggingHandler(LogLevel.INFO))
                 .childHandler(new ChannelInitializer<Channel>() {

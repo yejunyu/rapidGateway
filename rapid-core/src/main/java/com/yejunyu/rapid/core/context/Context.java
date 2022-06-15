@@ -1,5 +1,6 @@
 package com.yejunyu.rapid.core.context;
 
+import com.yejunyu.rapid.common.config.Rule;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.function.Consumer;
@@ -81,7 +82,7 @@ public interface Context {
      *
      * @return 规则对象
      */
-    Object getRule();
+    Rule getRule();
 
     /**
      * 上下文中的请求对象
@@ -135,7 +136,7 @@ public interface Context {
      * @param <T>
      * @return
      */
-    <T> T putAttribute(Object key, T value);
+    <T> T putAttribute(AttributeKey<T> key, T value);
 
     /**
      * 获取 netty 的 ctx
@@ -154,7 +155,7 @@ public interface Context {
     /**
      * 释放请求资源
      */
-    void releaseRequest();
+    boolean releaseRequest();
 
     /**
      * 写回接收回调函数的设置
