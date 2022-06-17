@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * @author : YeJunyu
- * @description : 响应对象
+ * @description : 响应对象辅助类
  * @email : yyyejunyu@gmail.com
  * @date : 2022/5/31
  */

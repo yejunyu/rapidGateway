@@ -18,7 +18,7 @@ public class RapidContext extends BaseContext {
 
     private final Rule rule;
 
-    public RapidContext(String protocol, ChannelHandlerContext nettyCtx, boolean keepAlive, RapidRequest rapidRequest, Rule rule) {
+    private RapidContext(String protocol, ChannelHandlerContext nettyCtx, boolean keepAlive, RapidRequest rapidRequest, Rule rule) {
         super(protocol, nettyCtx, keepAlive);
         this.request = rapidRequest;
         this.rule = rule;
@@ -130,12 +130,12 @@ public class RapidContext extends BaseContext {
     }
 
     @Override
-    public Object getRequest() {
+    public RapidRequest getRequest() {
         return request;
     }
 
     @Override
-    public Object getResponse() {
+    public RapidResponse getResponse() {
         return response;
     }
 

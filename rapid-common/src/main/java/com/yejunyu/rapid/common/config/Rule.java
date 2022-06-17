@@ -70,6 +70,12 @@ public class Rule implements Comparable<Rule>, Serializable {
         return false;
     }
 
+    /**
+     * 为了以后扩展, 一个 path 绑定多个 rule,按优先级排序
+     *
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Rule o) {
         final int compare = Integer.compare(getOrder(), o.getOrder());
