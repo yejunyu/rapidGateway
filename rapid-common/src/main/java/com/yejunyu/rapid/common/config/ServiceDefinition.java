@@ -43,6 +43,7 @@ public class ServiceDefinition implements Serializable {
     private boolean enable = true;
     /**
      * 服务列表信息
+     * key: path
      */
     private Map<String, ServiceInvoker> invokerMap;
 

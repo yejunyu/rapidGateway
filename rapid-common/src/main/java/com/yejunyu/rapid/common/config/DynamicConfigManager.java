@@ -1,5 +1,6 @@
 package com.yejunyu.rapid.common.config;
 
+import com.google.common.collect.Sets;
 import lombok.Getter;
 
 import java.util.Iterator;
@@ -63,8 +64,14 @@ public class DynamicConfigManager {
      * @param serviceInstance
      */
     public void addServiceInstance(String uniqueId, ServiceInstance serviceInstance) {
-        final Set<ServiceInstance> serviceInstances = serviceInstanceMap.get(uniqueId);
-        serviceInstances.add(serviceInstance);
+        serviceInstanceMap.computeIfAbsent(uniqueId, (x) -> {
+            if (serviceInstanceMap.containsKey(uniqueId)) {
+                serviceInstanceMap.get(uniqueId).add(serviceInstance);
+            } else {
+                serviceInstanceMap.put(uniqueId, Sets.newHashSet(serviceInstance));
+            }
+            return serviceInstanceMap.get(uniqueId);
+        });
     }
 
     /**

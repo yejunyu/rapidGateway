@@ -1,5 +1,9 @@
 package com.yejunyu.rapid.core.context;
 
+import com.yejunyu.rapid.common.config.ServiceInvoker;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -9,10 +13,26 @@ import java.util.Set;
  * @date : 2022/6/5
  */
 public abstract class AttributeKey<T> {
+
+    private static final Map<String, AttributeKey<?>> namedMap = new HashMap<>();
+
     /**
      * 到负载均衡之前,通过具体的服务,获取对应的服务实例列表
      */
     public static final AttributeKey<Set<String>> MATCH_ADDRESS = create(Set.class);
+
+    public static final AttributeKey<ServiceInvoker> HTTP_INVOKER = create(ServiceInvoker.class);
+    public static final AttributeKey<ServiceInvoker> DUBBO_INVOKER = create(ServiceInvoker.class);
+
+    static {
+        namedMap.put("MATCH_ADDRESS", MATCH_ADDRESS);
+        namedMap.put("HTTP_INVOKER", HTTP_INVOKER);
+        namedMap.put("DUBBO_INVOKER", DUBBO_INVOKER);
+    }
+
+    public static AttributeKey<?> valueOf(String name) {
+        return namedMap.get(name);
+    }
 
     /**
      * 对象转成对应的 class 类
