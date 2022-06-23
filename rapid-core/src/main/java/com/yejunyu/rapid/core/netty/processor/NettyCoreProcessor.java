@@ -18,7 +18,6 @@ public class NettyCoreProcessor implements Processor {
 
     @Override
     public void process(HttpRequestWrapper event) {
-        log.info("NettyCoreProcessor add!");
         final ChannelHandlerContext ctx = event.getCtx();
         final FullHttpRequest request = event.getFullHttpRequest();
         try {

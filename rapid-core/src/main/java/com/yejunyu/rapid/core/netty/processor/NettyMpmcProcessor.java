@@ -32,8 +32,6 @@ public class NettyMpmcProcessor implements Processor {
 
     private volatile boolean isRunning = false;
 
-    private Thread consumerProcessorThread;
-
     public NettyMpmcProcessor(RapidConfig rapidConfig, NettyCoreProcessor nettyCoreProcessor) {
         this.rapidConfig = rapidConfig;
         this.nettyCoreProcessor = nettyCoreProcessor;
@@ -42,7 +40,6 @@ public class NettyMpmcProcessor implements Processor {
 
     @Override
     public void process(HttpRequestWrapper httpRequestWrapper) throws Exception {
-        log.info("NettyMpmcProcessor add!");
         this.mpmcBlockingQueue.put(httpRequestWrapper);
     }
 

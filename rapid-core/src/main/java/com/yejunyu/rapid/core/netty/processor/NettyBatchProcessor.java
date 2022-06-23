@@ -41,7 +41,6 @@ public class NettyBatchProcessor implements Processor {
 
     @Override
     public void process(HttpRequestWrapper httpRequestWrapper) {
-        log.info("NettyBatchProcessor add!");
         this.parallelFlusher.add(httpRequestWrapper);
     }
 
