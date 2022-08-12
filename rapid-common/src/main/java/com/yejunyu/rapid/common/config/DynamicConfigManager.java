@@ -19,17 +19,17 @@ public class DynamicConfigManager {
      * 服务定义 map:
      * key: uniqueId
      */
-    private ConcurrentHashMap<String, ServiceDefinition> serviceDefinitionMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, ServiceDefinition> serviceDefinitionMap = new ConcurrentHashMap<>();
     /**
      * 服务实例集合map:
      * key:uniqueId
      */
-    private ConcurrentHashMap<String, Set<ServiceInstance>> serviceInstanceMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Set<ServiceInstance>> serviceInstanceMap = new ConcurrentHashMap<>();
     /**
      * 规则集合:
      * key: ruleId
      */
-    private ConcurrentHashMap<String, Rule> ruleMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Rule> ruleMap = new ConcurrentHashMap<>();
 
     private DynamicConfigManager() {
     }
